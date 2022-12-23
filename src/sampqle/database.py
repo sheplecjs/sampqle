@@ -1,13 +1,27 @@
 from pathlib import Path
+import json
 
 from sqlalchemy import create_engine
-from sqlalchemy.engine import Connection
+from sqlalchemy import engine
 from sqlalchemy_utils import database_exists, create_database
 
 
 def get_engine(
     cred: dict, db_type: str = "postgresql", engine_kwargs: dict = {"echo": False}
-) -> Connection:
+) -> engine:
+    """Constructs a db engine from provided credentials.
+
+    Args:
+        cred (dict): Dictionary of db credentials
+        db_type (str, optional): Type of db connection. Defaults to "postgresql".
+        engine_kwargs (_type_, optional): Anything to pass to create_engine. Defaults to {"echo": False}.
+
+    Raises:
+        KeyError: Improperly configured credentials.
+
+    Returns:
+        engine: sqlalchemy aql engine.
+    """
     try:
         url = f"{db_type}://{cred['user']}:{cred['password']}@{cred['host']}:{cred['port']}/{cred['db']}"
     except (KeyError, TypeError):
@@ -25,7 +39,7 @@ def get_engine(
 
 def write_to_database(
     data: dict,
-    credential_file: Path = Path.cwd().parent / "credentials.json",
+    credential_file: Path = Path.cwd() / "credentials.json",
     credential_name: str = "local postgresql",
 ) -> None:
     """Writes a dictionary database to an engine specified by credentials.

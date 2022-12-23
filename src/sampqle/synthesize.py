@@ -3,36 +3,36 @@ from sdv.relational import HMA1
 from sdv.tabular import GaussianCopula
 from pathlib import Path
 import pandas as pd
-import datetime
-import json
-
-from .database import get_engine
+import warnings
 
 
 def get_expanded_data(
-    user_synth: int = 1000,
-    sessions_synth: int = 4500,
-    tx_synth: int = 600,
-    nps_synth: int = 1300,
-    products_synth: int = 25,
-    profiles_synth: int = 850,
-    data_folder: Path = Path.cwd().parent / "data",
+    user_synth: int = 10,
+    sessions_synth: int = 45,
+    tx_synth: int = 6,
+    nps_synth: int = 13,
+    products_synth: int = 5,
+    profiles_synth: int = 8,
+    data_folder: Path = Path.cwd() / "data",
+    num_samples: int = 1000
 ) -> dict:
     """Generates a multi-table database from examples.
 
     Args:
-        user_synth (int, optional): Desired number of entries in user table. Defaults to 1000.
-        sessions_synth (int, optional): Entries in sessions table. Defaults to 4500.
-        tx_synth (int, optional): Entries in transactions table. Defaults to 600.
-        nps_synth (int, optional): Entries in nps table. Defaults to 1300.
-        products_synth (int, optional): Entries in products table. Defaults to 25.
-        profiles_synth (int, optional): Entries in profiles table. Defaults to 850.
-        data_folder (Path, optional): Path to folder containing data. Defaults to Path.cwd().parent/"data".
+        user_synth (int, optional): Desired number of entries in user table. Defaults to 10.
+        sessions_synth (int, optional): Entries in sessions table. Defaults to 45.
+        tx_synth (int, optional): Entries in transactions table. Defaults to 6.
+        nps_synth (int, optional): Entries in nps table. Defaults to 13.
+        products_synth (int, optional): Entries in products table. Defaults to 5.
+        profiles_synth (int, optional): Entries in profiles table. Defaults to 8.
+        data_folder (Path, optional): Path to folder containing data. Defaults to Path.cwd()./"data".
+        num_samples (int, Optional): Number of base (user) samples in the final sample.
 
     Returns:
         dict: A dictionary with table names as keys and dataframes of their synthetic data as values.
     """
-    data_folder = Path.cwd().parent / "data"
+
+    warnings.filterwarnings("ignore")
 
     meta = Metadata(str(data_folder / "meta.json"))
 
@@ -66,7 +66,9 @@ def get_expanded_data(
     nps_expanded = nps_model.sample(num_rows=nps_synth)
 
     products = pd.read_json(data_folder / "products.json")
-    products_model = GaussianCopula(primary_key="products_id")
+
+    products_model = GaussianCopula(primary_key="product_id")
+    products_model.fit(products)
     products_expanded = products_model.sample(num_rows=products_synth)
 
     profiles = pd.read_json(data_folder / "profiles.json")
@@ -76,7 +78,7 @@ def get_expanded_data(
     profiles_expanded = profiles_model.sample(num_rows=profiles_synth)
 
     tables = {
-        "products": products,
+        "products": products_expanded,
         "users": users_expanded,
         "nps": nps_expanded,
         "sessions": sessions_expanded,
@@ -87,4 +89,4 @@ def get_expanded_data(
     model = HMA1(meta)
     model.fit(tables)
 
-    return model.sample()
+    return model.sample(num_rows=num_samples)
