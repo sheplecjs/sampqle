@@ -17,3 +17,19 @@ CLI for running example scripts. Notebooks for annotated exploration.
 4. Ensure you've supplied credentials pointing to a running database instance (see sample_credentials.json)
 
 5. run `poetry run make-data`
+
+## Run a Sample Script
+
+For example, with the standard synthesis samples and a local postgres db:
+
+`psql -d sampqle -f scripts/01_nps_view.sql`
+`psql -d sampqle -f scripts/02_nps_by_month.sql`
+
+ | Month  | Promoters | Passaives | Detractors |
+ |--------|-----------|-----------|------------|
+ |2021-10 |         0 |         0 |          4 |
+ |2021-11 |         0 |         7 |        143 |
+ |2021-12 |         2 |        38 |        497 |
+ |2022-01 |        22 |       135 |        141 |
+ |2022-02 |        19 |         3 |          3 |
+ |2022-03 |         1 |         0 |          0 |
