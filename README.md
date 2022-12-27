@@ -1,6 +1,12 @@
 # SampQLe
 
-A synthetic multi-table SQL sample.
+A synthetic multi-table SQL sample. Using single and multi-table modeling from [Synthetic Data Vaut](https://sdv.dev), a set of basic example values and relationships is expanded to a less trivial size. The default data look like this:
+
+![Default Schema](default_schema.svg)
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
 
 ## Features
 
@@ -23,6 +29,7 @@ CLI for running example scripts. Notebooks for annotated exploration.
 For example, with the standard synthesis samples and a local postgres db:
 
 `psql -d sampqle -f scripts/01_nps_view.sql`
+
 `psql -d sampqle -f scripts/02_nps_by_month.sql`
 
  | Month  | Promoters | Passaives | Detractors |
@@ -33,3 +40,11 @@ For example, with the standard synthesis samples and a local postgres db:
  |2022-01 |        22 |       135 |        141 |
  |2022-02 |        19 |         3 |          3 |
  |2022-03 |         1 |         0 |          0 |
+
+## Included Examples
+
++ 01_nps_view.sql - *Creates a view that categorizes and groups by month nps responses. An arithmetic mean is used in cases where a user submits multiple responses for a single period.*
+
++ 02_nps_by_month.sql - *Creates a monthly overview of nps responses from the previous view.*
+
++ 03_recent_tx_detractors.sql - *Describes the transactions of detractors as well as total sales in terms of products purchased.*
