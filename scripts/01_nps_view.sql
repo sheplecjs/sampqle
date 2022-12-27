@@ -2,7 +2,7 @@
 -- submits multiple surveys in one month. This view will be useful for building general NPS reporting as well
 -- as individual product performance analysis.
 
-CREATE VIEW nps_user_monthly AS
+CREATE OR REPLACE VIEW nps_user_monthly AS
 SELECT
     nps.user,
     TO_CHAR(nps.timestamp, 'YYYY-MM') AS "month",
@@ -22,7 +22,8 @@ SELECT
 FROM
     nps
 GROUP BY
-    TO_CHAR(nps.timestamp, 'YYYY-MM'),
+    month,
     nps.user
 ORDER BY
-    nps.user;
+    nps.user,
+    month;
