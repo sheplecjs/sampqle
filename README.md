@@ -1,6 +1,8 @@
 # SampQLe
 
-A synthetic multi-table SQL sample. Using single and multi-table modeling from [Synthetic Data Vaut](https://sdv.dev), a set of basic example values and relationships is expanded to a less trivial size. The default data look like this:
+A synthetic multi-table SQL sample. SDV - [Synthetic Data Vaut](https://sdv.dev) - modelss , a set of basic example values and relationships is expanded to a less trivial size. 
+
+The default data look like this:
 
 ![Default Schema](default_schema.svg)
 
@@ -32,7 +34,7 @@ For example, with the standard synthesis samples and a local postgres db:
 
 `psql -d sampqle -f scripts/02_nps_by_month.sql`
 
- | Month  | Promoters | Passaives | Detractors |
+ | Month  | Promoters | Passives | Detractors |
  |--------|-----------|-----------|------------|
  |2021-10 |         0 |         0 |          4 |
  |2021-11 |         0 |         7 |        143 |
@@ -43,8 +45,10 @@ For example, with the standard synthesis samples and a local postgres db:
 
 ## Included Examples
 
-+ 01_nps_view.sql - *Creates a view that categorizes and groups by month nps responses. An arithmetic mean is used in cases where a user submits multiple responses for a single period.*
++ 01_dynamic_counts.sql - *Describe row counts for all tables.*
 
-+ 02_nps_by_month.sql - *Creates a monthly overview of nps responses from the previous view.*
++ 02_case_view.sql - *Use of case statements in creation of a view.*
 
-+ 03_recent_tx_detractors.sql - *Describes the transactions of detractors as well as total sales in terms of products purchased.*
++ 03_group.sql - *Aggregates and groups a view.*
+
++ 04_left_join.sql - *Combines transaction and session data, then joins and aggregates a view to help identify poor performing products.*
