@@ -1,6 +1,8 @@
--- Join transaction information to detractors
+-- Join transaction information to detractors to provide a list of products, associated total sales and 
+-- associated number of detractors with purchases for the month of January 2022
 SELECT
     tx.product,
+    tx.month,
     SUM(tx.number) AS "sales",
     SUM(nps_user_monthly.detractor) AS "detractors"
 FROM
@@ -22,8 +24,7 @@ FROM
 WHERE
     nps_user_monthly.detractor = 1
 GROUP BY
-    tx.product
+    tx.product,
+    tx.month
 ORDER BY
-    detractors DESC
-LIMIT
-    20;
+    detractors DESC;
