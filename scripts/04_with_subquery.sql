@@ -1,5 +1,5 @@
 -- Join transaction information to detractors to provide a list of products, associated total sales and 
--- associated number of detractors with purchases for the month of January 2022
+-- associated number of detractors with purchases
 SELECT
     tx.product,
     tx.month,
