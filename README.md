@@ -1,8 +1,8 @@
 # SampQLe
 
-A synthetic multi-table SQL sample. SDV - [Synthetic Data Vaut](https://sdv.dev) - modelss , a set of basic example values and relationships is expanded to a less trivial size. 
+A synthetic multi-table SQL sample. With SDV [Synthetic Data Vaut](https://sdv.dev) models , a set of basic example values and relationships is expanded to a less trivial size. A number of sample scripts are included to demonstrate queries with potential analytical value.
 
-The default data look like this:
+The default schema looks like this:
 
 ![Default Schema](default_schema.svg)
 
@@ -12,7 +12,7 @@ The default data look like this:
 
 ## Features
 
-CLI for running example scripts. Notebooks for annotated exploration.
+CLI with Click for running database synthesis.
 
 ## Synthesize a Database
 
@@ -45,14 +45,14 @@ For example, with the standard synthesis samples and a local postgres db running
 
 ## Included Examples
 
-+ 01_table_stats.sql - *Describe row counts for all tables.*
++ 01_table_stats.sql - *Describe row counts for all tables*
 
-+ 02_case_view.sql - *Use of case statements in creation of a view.*
++ 02_case_view.sql - *Use of case statements in creation of a view used queries 03 and 04*
 
-+ 03_group.sql - *Aggregates and groups a view.*
++ 03_group.sql - *Aggregates and groups a view of monthly NPS stats*
 
-+ 04_with_CTE.sql - *Combines transaction and session data, then joins and aggregates a view to help identify poor performing products.*
++ 04_with_CTE.sql - *Uses a Common Table Expression to help identify poor performing products*
 
-+ 04_with_subquery - *A version of query 4 written with a subquery format.*
++ 04_with_subquery - *A version of query 4 written with a subquery format*
 
-+ 04t_test_same.sh - *A one-liner to test that 04 queries are the same. Pass returns nothing.*
++ 04t_test_same.sh - *A one-liner to test that 04 queries are the same. Pass returns nothing*
