@@ -28,11 +28,11 @@ CLI for running example scripts. Notebooks for annotated exploration.
 
 ## Run a Sample Script
 
-For example, with the standard synthesis samples and a local postgres db:
+For example, with the standard synthesis samples and a local postgres db running properly, output should look something like this:
 
-`psql -d sampqle -f scripts/01_nps_view.sql`
+`psql -d sampqle -f scripts/02_case_view.sql`
 
-`psql -d sampqle -f scripts/02_nps_by_month.sql`
+`psql -d sampqle -f scripts/03_group.sql`
 
  | Month  | Promoters | Passives | Detractors |
  |--------|-----------|-----------|------------|
@@ -45,10 +45,14 @@ For example, with the standard synthesis samples and a local postgres db:
 
 ## Included Examples
 
-+ 01_dynamic_counts.sql - *Describe row counts for all tables.*
++ 01_table_stats.sql - *Describe row counts for all tables.*
 
 + 02_case_view.sql - *Use of case statements in creation of a view.*
 
 + 03_group.sql - *Aggregates and groups a view.*
 
-+ 04_left_join.sql - *Combines transaction and session data, then joins and aggregates a view to help identify poor performing products.*
++ 04_with_CTE.sql - *Combines transaction and session data, then joins and aggregates a view to help identify poor performing products.*
+
++ 04_with_subquery - *A version of query 4 written with a subquery format.*
+
++ 04t_test_same.sh - *A one-liner to test that 04 queries are the same. Pass returns nothing.*
