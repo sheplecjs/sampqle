@@ -47,7 +47,7 @@ For example, with the standard synthesis samples and a local postgres db running
 
 + 01_table_stats.sql - *Describe row counts for all tables*
 
-+ 02_case_view.sql - *Use of case statements in creation of a view used queries 03 and 04*
++ 02_case_view.sql - *Use of case statements in creation of a view used in queries 03 and 04*
 
 + 03_group.sql - *Aggregates and groups a view of monthly NPS stats*
 
@@ -56,3 +56,5 @@ For example, with the standard synthesis samples and a local postgres db running
 + 04_with_subquery - *A version of query 4 written with a subquery format*
 
 + 04t_test_same.sh - *A one-liner to test that 04 queries are the same. Pass returns nothing*
+
++ 05_with_window.sql - *A window function is used to provide a total sales by product column*
