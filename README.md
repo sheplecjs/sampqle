@@ -57,4 +57,6 @@ For example, with the standard synthesis samples and a local postgres db running
 
 + 04t_test_same.sh - *A one-liner to test that 04 queries are the same. Pass returns nothing*
 
++ 04t_test_perf.sh - *Loops though subquery and CTE versions 10 times reporting the query time*
+
 + 05_with_window.sql - *A window function is used to provide a total sales by product column*
