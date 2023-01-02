@@ -4,6 +4,9 @@ from sdv.tabular import GaussianCopula
 from pathlib import Path
 import pandas as pd
 import warnings
+import lorem
+
+lorem.sentence()
 
 
 def get_expanded_data(
@@ -89,4 +92,17 @@ def get_expanded_data(
     model = HMA1(meta)
     model.fit(tables)
 
-    return model.sample(num_rows=num_samples)
+    samp = model.sample(num_rows=num_samples)
+
+    # generate text comments from half the nps responses and concat
+    comm_len = len(samp["nps"]) // 2
+    sentence = lorem.sentence(count=comm_len, comma=(0, 3), word_range=(3, 21))
+    comms = []
+
+    for n in range(comm_len):
+        comms.append(next(sentence))
+
+    comments = pd.DataFrame({"comments": comms})
+    samp["nps"] = pd.concat([samp["nps"], comments], axis=1)
+
+    return samp
