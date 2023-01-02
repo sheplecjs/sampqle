@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo 'Subquery time:'
 
 for N in {1..10};
