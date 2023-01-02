@@ -3,13 +3,15 @@ import json
 
 from sqlalchemy import create_engine
 from sqlalchemy import engine
-from sqlalchemy_utils import database_exists, create_database
+from sqlalchemy_utils import database_exists, create_database, drop_database
 
 
 def get_engine(
     cred: dict, db_type: str = "postgresql", engine_kwargs: dict = {"echo": False}
 ) -> engine:
     """Constructs a db engine from provided credentials.
+
+    An existing instance is dropped first to avoid any conflicts from dependant views.
 
     Args:
         cred (dict): Dictionary of db credentials
@@ -29,8 +31,10 @@ def get_engine(
             "cred argument should be a dict including user, password, host, port, and db keys."
         )
 
-    if not database_exists(url):
-        create_database(url)
+    if database_exists(url):
+        drop_database(url)
+    
+    create_database(url)
 
     engine = create_engine(url, **engine_kwargs)
 
