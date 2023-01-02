@@ -1,4 +1,4 @@
--- A report showing customer profiles who purchased products 636 or 94. Total sales are included for context.
+-- A report showing customer profiles who purchased products specified. Total sales are included for context.
 SELECT
     tx.cancelled,
     tx.timestamp,
@@ -13,4 +13,4 @@ FROM
     LEFT JOIN users ON sessions.user_id = users.user_id
     LEFT JOIN profiles ON users.user_id = profiles.user
 WHERE
-    product = 636 OR product = 94;
+    product = 228 OR product = 793;
