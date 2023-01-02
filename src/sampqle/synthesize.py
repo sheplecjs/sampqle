@@ -5,6 +5,8 @@ from pathlib import Path
 import pandas as pd
 import warnings
 import lorem
+import random
+import string
 
 lorem.sentence()
 
@@ -101,6 +103,13 @@ def get_expanded_data(
 
     for n in range(comm_len):
         comms.append(next(sentence))
+
+    # to facilitate one of our examples, we add an email address to 10% of comments
+    faked = set(range(comm_len))
+    for n in range(comm_len // 10):
+        fake_idx = faked.pop()
+        fake_addr = " " + "".join(random.choices(string.ascii_letters, k=random.randint(2, 12))) + "@" + "fakeaddress.co"
+        comms[fake_idx] += fake_addr
 
     comments = pd.DataFrame({"comments": comms})
     samp["nps"] = pd.concat([samp["nps"], comments], axis=1)
