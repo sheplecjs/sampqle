@@ -2,7 +2,7 @@
 name = "sampqle"
 version = "0.1.0"
 description = "A synthetic multi-table SQL sample."
-authors = ["sheplecjs <colin.shepley@pm.me>"]
+authors = ["sheplecjs"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
@@ -14,6 +14,7 @@ ipywidgets = "^8.0.3"
 sqlalchemy = "^1.4.45"
 psycopg2-binary = "^2.9.5"
 sqlalchemy-utils = "^0.38.3"
+python-lorem = "^1.2.0"
 
 
 [tool.poetry.group.dev.dependencies]

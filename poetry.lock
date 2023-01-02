@@ -1282,6 +1282,14 @@ optional = false
 python-versions = ">=3.5"
 
 [[package]]
+name = "python-lorem"
+version = "1.2.0"
+description = "Lorem ipsum generator."
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[[package]]
 name = "pytz"
 version = "2022.7"
 description = "World timezone definitions, modern and historical"
@@ -1848,7 +1856,7 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = "3.8.14"
-content-hash = "c24f00393928b9a53263b5b755b9949b4fbf4222fb25db00bdcd713ca3988b81"
+content-hash = "d479e194551bcdd920d014d475d71fe47ffa3c3fd0ebf5f41242deda475efe25"
 
 [metadata.files]
 anyio = [
@@ -2815,6 +2823,10 @@ python-dateutil = [
 python-json-logger = [
     {file = "python-json-logger-2.0.4.tar.gz", hash = "sha256:764d762175f99fcc4630bd4853b09632acb60a6224acb27ce08cd70f0b1b81bd"},
     {file = "python_json_logger-2.0.4-py3-none-any.whl", hash = "sha256:3b03487b14eb9e4f77e4fc2a023358b5394b82fd89cecf5586259baed57d8c6f"},
+]
+python-lorem = [
+    {file = "python-lorem-1.2.0.tar.gz", hash = "sha256:114323c465558e9df5f0893a68ba8dbd9efbd94f8b62f4fb43756c88353e3c55"},
+    {file = "python_lorem-1.2.0-py3-none-any.whl", hash = "sha256:10524c0c8fb029dc8ab794aeb98debe42fdc90415b6f1c1a4c52343c2d84f9dd"},
 ]
 pytz = [
     {file = "pytz-2022.7-py2.py3-none-any.whl", hash = "sha256:93007def75ae22f7cd991c84e02d434876818661f8df9ad5df9e950ff4e52cfd"},
