@@ -27,3 +27,10 @@ GROUP BY
 ORDER BY
     nps.user,
     month;
+
+SELECT
+    *
+FROM
+    nps_user_monthly
+LIMIT
+    10;
