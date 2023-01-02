@@ -8,7 +8,12 @@ import lorem
 import random
 import string
 
-lorem.sentence()
+
+def expand_prototable(pk: int, path: Path, samples: int, **kwargs) -> pd.DataFrame:
+    prototable = pd.read_json(path, **kwargs)
+    model = GaussianCopula(primary_key=pk)
+    model.fit(prototable)
+    return model.sample(num_rows=samples)
 
 
 def get_expanded_data(
@@ -19,7 +24,7 @@ def get_expanded_data(
     products_synth: int = 5,
     profiles_synth: int = 8,
     data_folder: Path = Path.cwd() / "data",
-    num_samples: int = 1000
+    num_samples: int = 1000,
 ) -> dict:
     """Generates a multi-table database from examples.
 
@@ -41,46 +46,34 @@ def get_expanded_data(
 
     meta = Metadata(str(data_folder / "meta.json"))
 
-    users = pd.read_json(
-        data_folder / "users.json",
+    users_expanded = expand_prototable(
+        pk="user_id",
+        path=data_folder / "users.json",
+        samples=user_synth,
         convert_dates=[
             "birthday",
         ],
     )
 
-    users_model = GaussianCopula(primary_key="user_id")
-    users_model.fit(users)
-    users_expanded = users_model.sample(num_rows=user_synth)
+    sessions_expanded = expand_prototable(
+        pk="session_id", path=data_folder / "sessions.json", samples=sessions_synth
+    )
 
-    sessions = pd.read_json(data_folder / "sessions.json")
+    tx_expanded = expand_prototable(
+        pk="transaction_id", path=data_folder / "transactions.json", samples=tx_synth
+    )
 
-    sessions_model = GaussianCopula(primary_key="session_id")
-    sessions_model.fit(sessions)
-    sessions_expanded = sessions_model.sample(num_rows=sessions_synth)
+    nps_expanded = expand_prototable(
+        pk="nps_id", path=data_folder / "nps.json", samples=nps_synth
+    )
 
-    transactions = pd.read_json(data_folder / "transactions.json")
+    products_expanded = expand_prototable(
+        pk="product_id", path=data_folder / "products.json", samples=products_synth
+    )
 
-    tx_model = GaussianCopula(primary_key="transaction_id")
-    tx_model.fit(transactions)
-    tx_expanded = tx_model.sample(num_rows=tx_synth)
-
-    nps = pd.read_json(data_folder / "nps.json")
-
-    nps_model = GaussianCopula(primary_key="nps_id")
-    nps_model.fit(nps)
-    nps_expanded = nps_model.sample(num_rows=nps_synth)
-
-    products = pd.read_json(data_folder / "products.json")
-
-    products_model = GaussianCopula(primary_key="product_id")
-    products_model.fit(products)
-    products_expanded = products_model.sample(num_rows=products_synth)
-
-    profiles = pd.read_json(data_folder / "profiles.json")
-
-    profiles_model = GaussianCopula(primary_key="user")
-    profiles_model.fit(profiles)
-    profiles_expanded = profiles_model.sample(num_rows=profiles_synth)
+    profiles_expanded = expand_prototable(
+        pk="user", path=data_folder / "profiles.json", samples=profiles_synth
+    )
 
     tables = {
         "products": products_expanded,
@@ -108,7 +101,12 @@ def get_expanded_data(
     faked = set(range(comm_len))
     for n in range(comm_len // 10):
         fake_idx = faked.pop()
-        fake_addr = " " + "".join(random.choices(string.ascii_letters, k=random.randint(2, 12))) + "@" + "fakeaddress.co"
+        fake_addr = (
+            " "
+            + "".join(random.choices(string.ascii_letters, k=random.randint(2, 12)))
+            + "@"
+            + "fakeaddress.co"
+        )
         comms[fake_idx] += fake_addr
 
     comments = pd.DataFrame({"comments": comms})
