@@ -3,6 +3,7 @@ SELECT
     tx.cancelled,
     tx.timestamp,
     tx.number,
+    tx.product,
     SUM(tx.number) OVER(PARTITION BY tx.product) AS "Total Sales",
     users.country,
     profiles.marketing_dimension_1 AS "Survey Question 1",
@@ -13,4 +14,5 @@ FROM
     LEFT JOIN users ON sessions.user_id = users.user_id
     LEFT JOIN profiles ON users.user_id = profiles.user
 WHERE
-    product = 228 OR product = 793;
+    product = 638
+    OR product = 973;
