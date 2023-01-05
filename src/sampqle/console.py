@@ -20,11 +20,12 @@ def info() -> None:
     default="credentials.json",
     help="location of file containing db credentials",
 )
-@click.option("--name", default="local_postgresql", help="name of db")
+@click.option("--name", default="local_postgresql", help="Name of db")
 @click.option("--db", default="postgresql", help="DB type for engine url string.")
-def create(cred: str, name: str, db: str) -> None:
+@click.option("--samples", default=1000, help="Number of samples in base table")
+def create(cred: str, name: str, db: str, samples: int) -> None:
     """Creates synthetic database with default values."""
-    results = get_expanded_data()
+    results = get_expanded_data(num_samples=samples)
 
     write_to_database(results, cred, name)
 
