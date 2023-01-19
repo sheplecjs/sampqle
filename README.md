@@ -1,8 +1,8 @@
 # SampQLe
 
-A synthetic multi-table SQL sample. With SDV [Synthetic Data Vaut](https://sdv.dev) models , a set of basic example values and relationships is expanded to a less trivial size. A number of sample scripts are included to demonstrate queries with potential analytical value.
+A set of SQL samples arranging and querying databases of synthetic data. With SDV [Synthetic Data Vaut](https://sdv.dev) models, a set of basic example values and relationships is expanded to a less trivial size. A number of sample scripts are included to demonstrate queries with potential analytical value. Currently a multi-table database mimicking tables related to an ecommerce business and a timeseries example based on a frame of currency exchange rates.
 
-The default schema looks like this:
+The default schema of the ecommerce database looks like this:
 
 ![Default Schema](default_schema.svg)
 
@@ -24,15 +24,15 @@ CLI with Click for running database synthesis.
 
 4. Ensure you've supplied credentials pointing to a running database instance (see sample_credentials.json)
 
-5. run `poetry run make-data`
+5. run `poetry run make-data` - this will create both ecommerce and timeseries databases (specify to make just one e.g. --data ecommerce)
 
 ## Run a Sample Script
 
 For example, with the standard synthesis samples and a local postgres db running properly, output should look something like this:
 
-`psql -d sampqle -f scripts/02_case_view.sql`
+`psql -d sampqle -f scripts/ecommerce/02_case_view.sql`
 
-`psql -d sampqle -f scripts/03_group.sql`
+`psql -d sampqle -f scripts/ecommerce/03_group.sql`
 
  | Month  | Promoters | Passives | Detractors |
  |--------|-----------|-----------|------------|
@@ -44,6 +44,8 @@ For example, with the standard synthesis samples and a local postgres db running
  |2022-03 |         1 |         0 |          0 |
 
 ## Included Examples
+
++ **Ecommerce**
 
 + 01_table_stats.sql - *Describe row counts for all tables*
 
@@ -60,3 +62,9 @@ For example, with the standard synthesis samples and a local postgres db running
 + 04t_test_perf.sh - *Loops though subquery and CTE versions 10 times reporting the query time*
 
 + 05_with_window.sql - *A window function is used to provide a total sales by product column*
+
++ 06_aggregations.sql - *Aggregations are performed to show highest spending users and their average session minutes*
+
++ **Timeseries**
+
++ 00_create.sql - *Using a variable declaration creates a database and populates a table*
