@@ -1,14 +1,15 @@
-from sdv import Metadata
-from sdv.relational import HMA1
-from sdv.tabular import GaussianCopula
-from pathlib import Path
-from sdv.timeseries import PAR
-import pandas as pd
-import warnings
-import lorem
 import os
 import random
 import string
+import warnings
+from pathlib import Path
+
+import lorem
+import pandas as pd
+from sdv import Metadata
+from sdv.relational import HMA1
+from sdv.tabular import GaussianCopula
+from sdv.timeseries import PAR
 
 
 def expand_prototable(pk: int, path: Path, samples: int, **kwargs) -> pd.DataFrame:

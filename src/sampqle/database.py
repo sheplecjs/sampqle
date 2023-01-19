@@ -1,9 +1,8 @@
-from pathlib import Path
 import json
+from pathlib import Path
 
-from sqlalchemy import create_engine
-from sqlalchemy import engine
-from sqlalchemy_utils import database_exists, create_database, drop_database
+from sqlalchemy import create_engine, engine
+from sqlalchemy_utils import create_database, database_exists, drop_database
 
 
 def get_engine(
