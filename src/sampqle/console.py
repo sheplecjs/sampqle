@@ -25,7 +25,9 @@ def info() -> None:
 @click.option("--name", default="local_postgresql", help="Name of db.")
 @click.option("--db", default="postgresql", help="DB type for engine url string.")
 @click.option("--samples", default=1000, help="Number of samples in base table.")
-@click.option("--data", default=["ecommerce", "timeseries"], help="Specify data to synthesize.")
+@click.option(
+    "--data", default=["ecommerce", "timeseries"], help="Specify data to synthesize."
+)
 def create(cred: str, name: str, db: str, samples: int, data: Union[List, str]) -> None:
     """Creates synthetic database with default values."""
 
@@ -38,9 +40,10 @@ def create(cred: str, name: str, db: str, samples: int, data: Union[List, str]) 
     if "timeseries" in data:
         p = create_expanded_timeseries()
 
-        cmd = "psql -f scripts/timeseries/01_create.sql -v timeseries='/Users/sheplecjs/Desktop/SampQLe/data/timeseries/aud.csv'"
+        cmd = "psql -f scripts/timeseries/00_create.sql -v timeseries='/Users/sheplecjs/Desktop/SampQLe/data/timeseries/aud.csv'"
         proc = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE)
-        # output, error = proc.communicate()
+        output, error = proc.communicate()
 
-        click.echo(f"Timeseries data written to csv at {p} and copied to sampqle_timeseries database")
-    
+        click.echo(
+            f"Timeseries data written to csv at {p} and copied to sampqle_timeseries database"
+        )
