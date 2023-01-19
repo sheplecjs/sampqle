@@ -49,7 +49,9 @@ Get totals by month `psql -d sampqle -f scripts/ecommerce/03_group.sql`
 
 + 01_table_stats.sql - *Describe row counts for all tables*
 
-+ 02_case_view.sql - *Use of case statements in creation of a view used in queries 03 and 04*
++ 02a_regex.sql - *Creates a view where PII is removed from text fields with regex*
+
++ 02b_case_view.sql - *Use of case statements in creation of a view used in queries 03 and 04*
 
 + 03_group.sql - *Aggregates and groups a view of monthly NPS stats*
 
