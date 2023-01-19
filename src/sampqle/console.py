@@ -1,12 +1,13 @@
-import click
 import json
-from typing import Union, List
-from .synthesize import get_expanded_ecommerce_data, create_expanded_timeseries
-from .database import write_to_database
-
 import subprocess
+from pathlib import Paths
+from typing import List, Union
+
+import click
 
 from . import __version__
+from .database import write_to_database
+from .synthesize import create_expanded_timeseries, get_expanded_ecommerce_data
 
 
 @click.command()
@@ -40,7 +41,9 @@ def create(cred: str, name: str, db: str, samples: int, data: Union[List, str]) 
     if "timeseries" in data:
         p = create_expanded_timeseries()
 
-        cmd = "psql -f scripts/timeseries/00_create.sql -v timeseries='/Users/sheplecjs/Desktop/SampQLe/data/timeseries/aud.csv'"
+        path = Path.cwd() / "data" / "timeseries" / "aud.csv"
+
+        cmd = f"psql -f scripts/timeseries/00_create.sql -v timeseries='{path}'"
         proc = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE)
         output, error = proc.communicate()
 
