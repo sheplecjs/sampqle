@@ -30,9 +30,9 @@ CLI with Click for running database synthesis.
 
 For example, with the standard synthesis samples and a local postgres db running properly, output should look something like this:
 
-`psql -d sampqle -f scripts/ecommerce/02_case_view.sql`
+Create a view summarizing NPS results `psql -d sampqle -f scripts/ecommerce/02b_case_view.sql`
 
-`psql -d sampqle -f scripts/ecommerce/03_group.sql`
+Get totals by month `psql -d sampqle -f scripts/ecommerce/03_group.sql`
 
  | Month  | Promoters | Passives | Detractors |
  |--------|-----------|-----------|------------|
@@ -45,7 +45,7 @@ For example, with the standard synthesis samples and a local postgres db running
 
 ## Included Examples
 
-+ **Ecommerce**
+### Ecommerce
 
 + 01_table_stats.sql - *Describe row counts for all tables*
 
@@ -65,6 +65,6 @@ For example, with the standard synthesis samples and a local postgres db running
 
 + 06_aggregations.sql - *Aggregations are performed to show highest spending users and their average session minutes*
 
-+ **Timeseries**
+### Timeseries
 
 + 00_create.sql - *Using a variable declaration creates a database and populates a table*
