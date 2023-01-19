@@ -4,6 +4,8 @@ from typing import Union, List
 from .synthesize import get_expanded_ecommerce_data, create_expanded_timeseries
 from .database import write_to_database
 
+import subprocess
+
 from . import __version__
 
 
@@ -36,5 +38,9 @@ def create(cred: str, name: str, db: str, samples: int, data: Union[List, str]) 
     if "timeseries" in data:
         p = create_expanded_timeseries()
 
-        click.echo(f"Timeseries data written to csv at {p}")
+        cmd = "psql -f scripts/timeseries/01_create.sql -v timeseries='/Users/sheplecjs/Desktop/SampQLe/data/timeseries/aud.csv'"
+        proc = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE)
+        # output, error = proc.communicate()
+
+        click.echo(f"Timeseries data written to csv at {p} and copied to sampqle_timeseries database")
     

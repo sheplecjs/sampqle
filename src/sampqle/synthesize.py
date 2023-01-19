@@ -35,7 +35,7 @@ def get_expanded_ecommerce_data(
     nps_synth: int = 13,
     products_synth: int = 5,
     profiles_synth: int = 8,
-    data_folder: Path = Path.cwd() / "data",
+    data_folder: Path = Path.cwd() / "data" / "ecommerce",
     num_samples: int = 1000,
 ) -> dict:
     """Generates a multi-table database from examples.
@@ -47,7 +47,7 @@ def get_expanded_ecommerce_data(
         nps_synth (int, optional): Entries in nps table. Defaults to 13.
         products_synth (int, optional): Entries in products table. Defaults to 5.
         profiles_synth (int, optional): Entries in profiles table. Defaults to 8.
-        data_folder (Path, optional): Path to folder containing data. Defaults to Path.cwd()./"data".
+        data_folder (Path, optional): Path to folder containing data. Defaults to Path.cwd()./data/ecommerce.
         num_samples (int, Optional): Number of base (user) samples in the final sample.
 
     Returns:
@@ -130,6 +130,14 @@ def get_expanded_ecommerce_data(
     return samp
 
 def create_expanded_timeseries(proto: Path = Path.cwd() / "data" / "timeseries" / "aud.json") -> str:
+    """Expands timeseries prototable and saves as a csv file.
+
+    Args:
+        proto (Path, optional): Path to prototable. Defaults to Path.cwd()/"data"/"timeseries"/"aud.json".
+
+    Returns:
+        str: String of path to csv.
+    """
 
     df = pd.read_json(proto)
     df["date"] = df.index
