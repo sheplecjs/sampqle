@@ -129,7 +129,10 @@ def get_expanded_ecommerce_data(
 
     return samp
 
-def create_expanded_timeseries(proto: Path = Path.cwd() / "data" / "timeseries" / "aud.json") -> str:
+
+def create_expanded_timeseries(
+    proto: Path = Path.cwd() / "data" / "timeseries" / "aud.json",
+) -> str:
     """Expands timeseries prototable and saves as a csv file.
 
     Args:
