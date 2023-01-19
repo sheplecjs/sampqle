@@ -2,9 +2,11 @@ from sdv import Metadata
 from sdv.relational import HMA1
 from sdv.tabular import GaussianCopula
 from pathlib import Path
+from sdv.timeseries import PAR
 import pandas as pd
 import warnings
 import lorem
+import os
 import random
 import string
 
@@ -26,7 +28,7 @@ def expand_prototable(pk: int, path: Path, samples: int, **kwargs) -> pd.DataFra
     return model.sample(num_rows=samples)
 
 
-def get_expanded_data(
+def get_expanded_ecommerce_data(
     user_synth: int = 10,
     sessions_synth: int = 45,
     tx_synth: int = 6,
@@ -126,3 +128,20 @@ def get_expanded_data(
     samp["nps"] = pd.concat([samp["nps"], comments], axis=1)
 
     return samp
+
+def create_expanded_timeseries(proto: Path = Path.cwd() / "data" / "timeseries" / "aud.json") -> str:
+
+    df = pd.read_json(proto)
+    df["date"] = df.index
+
+    model = PAR(field_names=["Observed", "date"], sequence_index="date")
+
+    model.fit(df.iloc[:100])
+
+    samp = model.sample(1)
+
+    file = proto.parent / "aud.csv"
+
+    samp.to_csv(file)
+
+    return str(file)

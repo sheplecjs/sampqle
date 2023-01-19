@@ -33,7 +33,7 @@ def get_engine(
 
     if database_exists(url):
         drop_database(url)
-    
+
     create_database(url)
 
     engine = create_engine(url, **engine_kwargs)

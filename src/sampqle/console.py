@@ -1,7 +1,7 @@
 import click
 import json
-
-from .synthesize import get_expanded_data
+from typing import Union, List
+from .synthesize import get_expanded_ecommerce_data, create_expanded_timeseries
 from .database import write_to_database
 
 from . import __version__
@@ -20,13 +20,21 @@ def info() -> None:
     default="credentials.json",
     help="location of file containing db credentials",
 )
-@click.option("--name", default="local_postgresql", help="Name of db")
+@click.option("--name", default="local_postgresql", help="Name of db.")
 @click.option("--db", default="postgresql", help="DB type for engine url string.")
-@click.option("--samples", default=1000, help="Number of samples in base table")
-def create(cred: str, name: str, db: str, samples: int) -> None:
+@click.option("--samples", default=1000, help="Number of samples in base table.")
+@click.option("--data", default=["ecommerce", "timeseries"], help="Specify data to synthesize.")
+def create(cred: str, name: str, db: str, samples: int, data: Union[List, str]) -> None:
     """Creates synthetic database with default values."""
-    results = get_expanded_data(num_samples=samples)
 
-    write_to_database(results, cred, name)
+    if "ecommerce" in data:
+        results = get_expanded_ecommerce_data(num_samples=samples)
+        write_to_database(results, cred, name)
 
-    click.echo(f"Created and written tables for {[k for k in results.keys()]}.")
+        click.echo(f"Created and written tables for {[k for k in results.keys()]}.")
+
+    if "timeseries" in data:
+        p = create_expanded_timeseries()
+
+        click.echo(f"Timeseries data written to csv at {p}")
+    
