@@ -19,6 +19,7 @@ python-lorem = "^1.2.0"
 
 [tool.poetry.group.dev.dependencies]
 black = {extras = ["jupyter"], version = "^22.12.0"}
+isort = "^5.11.4"
 
 [build-system]
 requires = ["poetry-core"]
