@@ -1,6 +1,5 @@
-import json
 import subprocess
-from pathlib import Paths
+from pathlib import Path
 from typing import List, Union
 
 import click
