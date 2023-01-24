@@ -28,4 +28,5 @@ GROUP BY
     tx.product,
     tx.month
 ORDER BY
-    detractors DESC;
+    detractors DESC,
+    sales;
