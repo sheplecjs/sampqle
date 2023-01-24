@@ -148,7 +148,7 @@ def create_expanded_timeseries(
 
     model = PAR(field_names=["Observed", "date"], sequence_index="date")
 
-    model.fit(df.iloc[:100])
+    model.fit(df)
 
     samp = model.sample(1)
 
