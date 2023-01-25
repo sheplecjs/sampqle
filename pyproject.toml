@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "sampqle"
 version = "0.1.0"
-description = "A synthetic multi-table SQL sample."
+description = "A series of SQL script samples using synthetic data."
 authors = ["sheplecjs"]
 readme = "README.md"
 
