@@ -9,12 +9,12 @@ WITH prices AS (
 hist AS (
     SELECT
         WIDTH_BUCKET(observed, min_price, max_price, 9) AS bucket,
-        numrange(
+        NUMRANGE(
             ROUND(MIN(observed), 2),
             ROUND(MAX(observed), 2),
             '[]'
         ) AS price_range,
-        count(*) AS freq
+        COUNT(*) AS freq
     FROM
         aud_usd,
         prices
