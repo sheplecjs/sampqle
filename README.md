@@ -72,15 +72,15 @@ Summarize exchange rates with binning, frequency count, and a simple histogram `
 | Script Name | Description | Query Techniques |
 |-------------|-------------|------------------|
 | 01_table_stats.sql | *Describe row counts for all tables* | **pg_stats** |
-| 02a_regex.sql | *Creates a view where PII is removed from text fields with regex* | **CREATE VIEW**, **REGEX_REPLACE** |
-| 02b_case_view.sql | *Use of case statements in creation of a view used in queries 03 and 04* | **CREATE VIEW**, **CASE**, **GROUP BY**|
-| 03_group.sql | *Aggregates and groups a view of monthly NPS stats* | **CAST**, **GROUP BY** |
-| 04_with_CTE.sql | *Uses a Common Table Expression to help identify poor performing products* | **CREATE VIEW**, **CTE**, **JOIN**, **GROUP BY** |
-| 04_with_subquery | *A version of query 4 written with a subquery format* | **CREATE VIEW**, **JOIN**, **GROUP BY** |
-| 04t_test_perf.sh | *Loops though subquery and CTE versions 10 times reporting the query time* | **\timing** |
+| 02a_regex.sql | *Creates a view where PII is removed from text fields with regex* | **create view**, **regex_replace** |
+| 02b_case_view.sql | *Use of case statements in creation of a view used in queries 03 and 04* | **create view**, **case**, **group by**|
+| 03_group.sql | *Aggregates and groups a view of monthly NPS stats* | **cast**, **group by** |
+| 04_with_cte.sql | *Uses a Common Table Expression to help identify poor performing products* | **create view**, **cte**, **join**, **group by** |
+| 04_with_subquery | *A version of query 4 written with a subquery format* | **create view**, **join**, **group by** |
+| 04t_test_perf.sh | *Loops though subquery and cte versions 10 times reporting the query time* | **\timing** |
 | 04t_test_same.sh | *A one-liner to test that 04 queries are the same. Pass returns nothing* | ... |
-| 05_with_window.sql | *A window function is used to provide a transaction data of poor performing products with customer profiles for context* | **CTE**, **JOIN**, **OVER/PARTITION BY** |
-| 06_aggregations.sql | *Aggregations are performed to show highest spending users and their average session minutes* | **JOIN**, **HAVING** |
+| 05_with_window.sql | *A window function is used to provide a transaction data of poor performing products with customer profiles for context* | **cte**, **join**, **over partition by** |
+| 06_aggregations.sql | *Aggregations are performed to show highest spending users and their average session minutes* | **join**, **having** |
 
 ****
 
@@ -89,5 +89,5 @@ Summarize exchange rates with binning, frequency count, and a simple histogram `
 |  |  |  |
 |-------------|-------------|------------------|
 | 00_create.sql | *Using a variable declaration creates a database and populates a table* | **CREATE**, **COPY** |
-| 01_monthly_description.sql | *Descriptive statistics for exchange rate by month* | **GROUP BY** |
-| 02_binning.sql | *Bins exchange prices and prints an in-table histogram* | **CTE**, **WIDTH_BUCKET**, **NUMRANGE**, **REPEAT** |
+| 01_monthly_description.sql | *Descriptive statistics for exchange rate by month* | **group by** |
+| 02_binning.sql | *Bins exchange prices and prints an in-table histogram* | **cte**, **WIDTH_BUCKET**, **NUMRANGE**, **REPEAT** |
