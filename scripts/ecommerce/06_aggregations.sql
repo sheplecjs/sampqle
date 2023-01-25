@@ -1,3 +1,4 @@
+-- show the id, average session minutes, and total purchases for customers who have spent more than $100
 SELECT
     sessions.user_id,
     ROUND(AVG(sessions.minutes), 2) AS "Avg Session Minutes",
