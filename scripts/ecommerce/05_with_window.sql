@@ -18,3 +18,12 @@ FROM
 WHERE
     product = (SELECT product FROM worst_product)
     OR product = (SELECT product FROM second_worst_product);
+
+-- sample output:
+-- 
+--  cancelled |      timestamp      | number | product | Total Sales | country | Survey Question 1 | Survey Question 2 
+-- -----------+---------------------+--------+---------+-------------+---------+-------------------+-------------------
+--  f         | 2021-12-12 14:43:32 |      3 |      16 |           6 | CH      |                 2 |                 1
+--  f         | 2021-12-28 06:31:36 |      3 |      16 |           6 | CH      |                 3 |                 2
+--  f         | 2021-12-23 06:28:09 |      1 |     805 |           1 | CH      |                 2 |                 2
+-- (3 rows)
