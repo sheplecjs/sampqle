@@ -1,6 +1,7 @@
 -- Join transaction information to detractors to provide a list of products, associated total sales and 
 -- associated number of detractors with purchases
-WITH tx(product, number, timestamp, month, user_id) AS (
+CREATE
+OR REPLACE VIEW detractor_products AS WITH tx(product, number, timestamp, month, user_id) AS (
     SELECT
         t.product,
         t.number,
@@ -30,3 +31,8 @@ GROUP BY
 ORDER BY
     detractors DESC,
     sales;
+
+SELECT
+    *
+FROM
+    detractor_products;

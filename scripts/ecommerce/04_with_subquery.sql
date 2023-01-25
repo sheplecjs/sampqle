@@ -1,5 +1,7 @@
 -- Join transaction information to detractors to provide a list of products, associated total sales and 
 -- associated number of detractors with purchases
+CREATE
+OR REPLACE VIEW detractor_products AS
 SELECT
     tx.product,
     tx.month,
@@ -29,3 +31,8 @@ GROUP BY
 ORDER BY
     detractors DESC,
     sales;
+
+SELECT
+    *
+FROM
+    detractor_products;
