@@ -2,7 +2,7 @@
 SELECT
     n.month AS "Month",
     SUM(n.promoter) AS "Promoters",
-    SUM(n.passaive) AS "Passaives",
+    SUM(n.passaive) AS "Passives",
     SUM(n.detractor) AS "Detractors",
     ROUND(
         CAST(SUM(n.promoter) AS DECIMAL) / CAST(
