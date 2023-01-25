@@ -73,3 +73,5 @@ Get totals by month `psql -d sampqle -f scripts/ecommerce/03_group.sql`
 + 00_create.sql - *Using a variable declaration creates a database and populates a table*
 
 + 01_monthly_description.sql - *Descriptive statistics for exchange rate by month*
+
++ 02_binning.sql - *Bins exchange prices and prints an in-table histogram*
