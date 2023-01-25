@@ -24,13 +24,13 @@ hist AS (
         bucket
 )
 SELECT
-    price_range,
-    freq,
+    price_range AS "Price Range",
+    freq AS "Frequency",
     REPEAT(
         '|',
         (
             freq :: float / MAX(freq) OVER() * 30
         ) :: int
-    ) AS bar
+    ) AS "Histogram"
 FROM
     hist;
