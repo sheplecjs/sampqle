@@ -6,6 +6,10 @@ The default schema of the ecommerce database looks like this:
 
 ![Default Schema](default_schema.svg)
 
+A sample of aud_usd table data from timeseries:
+
+![Timeseries](timeseries.png)
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
