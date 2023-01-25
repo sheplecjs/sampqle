@@ -11,6 +11,6 @@ WHERE
 GROUP BY
     sessions.user_id
 HAVING
-    SUM(products.product_price * transactions.number) > 250
+    SUM(products.product_price * transactions.number) > 100
 ORDER BY
     "Purchases Total (Nearest Dollar)" DESC;
