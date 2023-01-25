@@ -1,4 +1,6 @@
 -- A report showing customer profiles who purchased products specified. Total sales are included for context.
+WITH worst_product AS (SELECT product FROM detractor_products LIMIT 1),
+     second_worst_product AS (SELECT product FROM detractor_products LIMIT 1 OFFSET 1)
 SELECT
     tx.cancelled,
     tx.timestamp,
@@ -14,5 +16,5 @@ FROM
     LEFT JOIN users ON sessions.user_id = users.user_id
     LEFT JOIN profiles ON users.user_id = profiles.user
 WHERE
-    product = 638
-    OR product = 973;
+    product = (SELECT product FROM worst_product)
+    OR product = (SELECT product FROM second_worst_product);
