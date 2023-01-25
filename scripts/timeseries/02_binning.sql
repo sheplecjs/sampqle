@@ -27,7 +27,7 @@ SELECT
     price_range AS "Price Range",
     freq AS "Frequency",
     REPEAT(
-        '|',
+        '+',
         (
             freq :: float / MAX(freq) OVER() * 30
         ) :: int
