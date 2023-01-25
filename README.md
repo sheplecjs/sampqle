@@ -1,6 +1,6 @@
 # SampQLe
 
-A set of SQL samples arranging and querying databases of synthetic data. With SDV [Synthetic Data Vaut](https://sdv.dev) models, a set of basic example values and relationships is expanded to a less trivial size. A number of sample scripts are included to demonstrate queries with potential analytical value. Currently a multi-table database mimicking tables related to an ecommerce business and a timeseries example based on a frame of currency exchange rates.
+A set of SQL samples arranging and querying databases of synthetic data. With SDV [Synthetic Data Vaut](https://sdv.dev) models, a set of basic example values and relationships is expanded to a less trivial size. A number of sample scripts are included to demonstrate queries with potential analytical value. Currently includes a multi-table database mimicking tables related to an ecommerce business and a timeseries example based on a frame of currency exchange rates.
 
 The default schema of the ecommerce database looks like this:
 
