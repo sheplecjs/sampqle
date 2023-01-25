@@ -34,14 +34,15 @@ Create a view summarizing NPS results `psql -d sampqle -f scripts/ecommerce/02b_
 
 Get totals by month `psql -d sampqle -f scripts/ecommerce/03_group.sql`
 
- | Month  | Promoters | Passives | Detractors |
- |--------|-----------|-----------|------------|
- |2021-10 |         0 |         0 |          4 |
- |2021-11 |         0 |         7 |        143 |
- |2021-12 |         2 |        38 |        497 |
- |2022-01 |        22 |       135 |        141 |
- |2022-02 |        19 |         3 |          3 |
- |2022-03 |         1 |         0 |          0 |
+ |  Month  | Promoters | Passives | Detractors |  Score  |
+ |---------|-----------|-----------|------------|---------|
+ |2021-09 |         0 |         0 |          1 | -100.00|
+ |2021-10 |         1 |         6 |         16 |  -65.00|
+ |2021-11 |        11 |        26 |        138 |  -73.00|
+ |2021-12 |        29 |        79 |        281 |  -65.00|
+ |2022-01 |        43 |       105 |        225 |  -49.00|
+ |2022-02 |        42 |        44 |         36 |    5.00|
+ |2022-03 |         6 |         5 |          2 |   31.00|
 
 ## Included Examples
 
