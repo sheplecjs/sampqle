@@ -44,6 +44,23 @@ Get totals by month `psql -d sampqle -f scripts/ecommerce/03_group.sql`
  |2022-02 |        42 |        44 |         36 |    5.00|
  |2022-03 |         6 |         5 |          2 |   31.00|
 
+ ****
+
+Summarize exchange rates with binning, frequency count, and a simple histogram `psql -d sampqle_timeseries -f scripts/timeseries/02_binning.sql`
+
+ | Price Range | Frequency |  Histogram                   |
+ |-------------|-----------|------------------------------|
+ |[0.71,0.77] |       801 | +++                            |
+ |[0.77,0.83] |      8438 | ++++++++++++++++++++++++++++++ |
+ |[0.83,0.89] |      3429 | ++++++++++++                   |
+ |[0.89,0.95] |       232 | +                              |
+ |[0.96,1.01] |        55 |                                |
+ |[1.02,1.08] |        21 |                                |
+ |[1.08,1.13] |        21 |                                |
+ |[1.14,1.20] |        11 |                                |
+ |[1.20,1.26] |         6 |                                |
+ |[1.26,1.26] |         1 |                                |
+
 ## Included Examples
 
 ### Ecommerce
