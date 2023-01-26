@@ -78,7 +78,7 @@ Summarize exchange rates with binning, frequency count, and a simple histogram `
 | 04_with_cte.sql | *Uses a Common Table Expression to help identify poor performing products* | **create view**, **cte**, **join**, **group by** |
 | 04_with_subquery | *A version of query 4 written with a subquery format* | **create view**, **join**, **group by** |
 | 04t_test_perf.sh | *Loops though subquery and cte versions 10 times reporting the query time* | **\timing** |
-| 04t_test_same.sh | *A one-liner to test that 04 queries are the same. Pass returns nothing* | ... |
+| 04t_test_same.sh | *A one-liner to test that 04 CTE and subquery queries are the same. Returns the difference between query outputs if any.* | ... |
 | 05_with_window.sql | *A window function is used to provide a transaction data of poor performing products with customer profiles for context* | **cte**, **join**, **over partition by** |
 | 06_aggregations.sql | *Aggregations are performed to show highest spending users and their average session minutes* | **join**, **having** |
 
