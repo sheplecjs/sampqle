@@ -88,6 +88,7 @@ Summarize exchange rates with binning, frequency count, and a simple histogram `
 
 |  |  |  |
 |-------------|-------------|------------------|
-| 00_create.sql | *Using a variable declaration creates a database and populates a table* | **CREATE**, **COPY** |
+| 00_create.sql | *Using a variable declaration creates a database and populates a table* | **create**, **copy** |
 | 01_monthly_description.sql | *Descriptive statistics for exchange rate by month* | **group by** |
-| 02_binning.sql | *Bins exchange prices and prints an in-table histogram* | **cte**, **WIDTH_BUCKET**, **NUMRANGE**, **REPEAT** |
+| 02_binning.sql | *Bins exchange prices and prints an in-table histogram* | **cte**, **width_bucket**, **numrange**, **repeat** |
+| 03_dow_stats.sql | *Gets average exchange rate by day of week for 2000-2007* | **extract isodow**, **group by** |
