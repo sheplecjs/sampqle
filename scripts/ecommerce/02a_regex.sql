@@ -6,7 +6,7 @@ SELECT
     score,
     REGEXP_REPLACE(
         comments,
-        '[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$',
+        '[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]*',
         '****@****',
         'g'
     )
@@ -18,7 +18,7 @@ SELECT
 FROM
     nps_clean
 LIMIT
-    10;
+    15;
 
 -- sample output:
 
