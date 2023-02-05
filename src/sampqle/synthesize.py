@@ -113,15 +113,21 @@ def get_expanded_ecommerce_data(
 
     # to 'synthesize' more realistically, we add an 'email' address to 10% of comments
     faked = set(range(comm_len))
-    for n in range(comm_len // 10):
-        fake_idx = faked.pop()
+    for n in range(comm_len // random.randrange(10, 15) - 1):
+        fake_idx = random.choice(list(faked))
+        faked.remove(fake_idx)
         fake_addr = (
             " "
             + "".join(random.choices(string.ascii_letters, k=random.randint(2, 12)))
             + "@"
             + "fakeaddress.foo"
         )
-        comms[fake_idx] += fake_addr
+
+        # add this to a random element in the comment
+        comment = comms[fake_idx].split()
+        rand_idx = random.randint(0, len(comment))
+        comment[rand_idx:rand_idx] = [fake_addr]
+        comms[fake_idx] = " ".join(comment)
 
     # using concat because of different index sizes (reflecting 50% comment submission rate)
     comments = pd.DataFrame({"comments": comms})
