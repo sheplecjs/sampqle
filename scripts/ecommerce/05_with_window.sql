@@ -2,12 +2,12 @@
 WITH worst_product AS (SELECT product FROM detractor_products LIMIT 1),
      second_worst_product AS (SELECT product FROM detractor_products LIMIT 1 OFFSET 1)
 SELECT
-    tx.cancelled,
-    tx.timestamp,
-    tx.number,
-    tx.product,
+    tx.cancelled AS "Cancelled",
+    tx.timestamp AS "Purchase Time",
+    tx.number AS "Items Purchased",
+    tx.product AS "Product ID",
     SUM(tx.number) OVER(PARTITION BY tx.product) AS "Total Sales",
-    users.country,
+    users.country "Country",
     profiles.marketing_dimension_1 AS "Survey Question 1",
     profiles.marketing_dimension_2 AS "Survey Question 2"
 FROM
