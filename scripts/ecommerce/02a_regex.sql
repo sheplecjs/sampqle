@@ -2,14 +2,14 @@
 CREATE
 OR REPLACE VIEW nps_clean AS
 SELECT
-    timestamp,
-    score,
+    timestamp AS "Submission",
+    score AS "Response",
     REGEXP_REPLACE(
         comments,
         '[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]*',
         '****@****',
         'g'
-    )
+    ) AS "Cleaned Comment"
 FROM
     nps;
 
