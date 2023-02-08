@@ -1,3 +1,5 @@
+-- drop and create a database for timeseries synthetic data create a table and read in from the variable 'timeseries'
+
 DROP DATABASE IF EXISTS sampqle_timeseries;
 
 CREATE DATABASE sampqle_timeseries;
