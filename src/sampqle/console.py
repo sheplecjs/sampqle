@@ -1,5 +1,6 @@
 import subprocess
 from typing import List, Union
+from pathlib import Path
 
 import click
 
@@ -37,12 +38,18 @@ def create(cred: str, name: str, db: str, samples: int, data: Union[List, str]) 
         click.echo(f"Created and written tables for {[k for k in results.keys()]}.")
 
     if "timeseries" in data:
-        p = create_expanded_timeseries()
+        p1 = create_expanded_timeseries()
+        p2 = create_expanded_timeseries(
+            proto=Path.cwd() / "data" / "timeseries" / "gbp.json"
+        )
+        p3 = create_expanded_timeseries(
+            proto=Path.cwd() / "data" / "timeseries" / "aud_gbp.json"
+        )
 
-        cmd = f"psql -f scripts/timeseries/00_create.sql -v timeseries='{p}'"
+        cmd = f"psql -f scripts/timeseries/00_create.sql -v timeseries_1='{p1}' -v timeseries_2='{p2}' -v timeseries_3='{p3}'"
         proc = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE)
         output, error = proc.communicate()
 
         click.echo(
-            f"Timeseries data written to csv at {p} and copied to sampqle_timeseries database"
+            f"Timeseries data written to csv at {p1}, {p2}, {p3} and copied to sampqle_timeseries database"
         )

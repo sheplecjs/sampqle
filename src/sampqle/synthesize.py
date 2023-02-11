@@ -157,7 +157,7 @@ def create_expanded_timeseries(
 
     samp = model.sample(1)
 
-    file = proto.parent / "aud.csv"
+    file = str(proto.parent / proto.stem) + ".csv"
 
     samp.to_csv(file)
 
