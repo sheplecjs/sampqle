@@ -1,5 +1,5 @@
 credentials.json
 __pycache__/
-data/timeseries/aud.csv
+data/timeseries/*.csv
 notebooks
 *.DS_Store
