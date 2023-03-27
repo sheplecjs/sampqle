@@ -5,20 +5,20 @@ CREATE DATABASE sampqle_timeseries;
 
 \c sampqle_timeseries;
 
-CREATE TABLE aud_usd(idx INT PRIMARY KEY, observed DECIMAL, tm DATE);
+CREATE TABLE aud_usd(tm DATE PRIMARY KEY, observed DECIMAL);
 
-COPY aud_usd(idx, observed, tm)
+COPY aud_usd(tm, observed)
 FROM
     :timeseries_1 DELIMITER ',' CSV HEADER;
 
-CREATE TABLE gbp_usd(idx INT PRIMARY KEY, observed DECIMAL, tm DATE);
+CREATE TABLE gbp_usd(tm DATE PRIMARY KEY, observed DECIMAL);
 
-COPY gbp_usd(idx, observed, tm)
+COPY gbp_usd(tm, observed)
 FROM
     :timeseries_2 DELIMITER ',' CSV HEADER;
 
-CREATE TABLE gbp_aud(idx INT PRIMARY KEY, observed DECIMAL, tm DATE);
+CREATE TABLE gbp_aud(tm DATE PRIMARY KEY, observed DECIMAL);
 
-COPY gbp_aud(idx, observed, tm)
+COPY gbp_aud(tm, observed)
 FROM
     :timeseries_3 DELIMITER ',' CSV HEADER;
