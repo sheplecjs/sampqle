@@ -157,6 +157,10 @@ def create_expanded_timeseries(
 
     samp = model.sample(1)
 
+    samp.drop_duplicates(subset="date", inplace=True)
+
+    samp.set_index("date", inplace=True)
+
     file = str(proto.parent / proto.stem) + ".csv"
 
     samp.to_csv(file)
