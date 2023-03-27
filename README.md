@@ -92,3 +92,4 @@ Summarize exchange rates with binning, frequency count, and a simple histogram `
 | 01_monthly_description.sql | *Descriptive statistics for exchange rate by month* | **group by** |
 | 02_binning.sql | *Bins exchange prices and prints an in-table histogram* | **cte**, **width_bucket**, **numrange**, **repeat** |
 | 03_dow_stats.sql | *Gets average exchange rate by day of week for 2000-2007* | **extract isodow**, **group by** |
+| 04_multiple.sql | *Shows the dates for which loss was lowest for GBP-AUD-USD.* | **join** |
